@@ -3,7 +3,6 @@
 /META-INF/resources/webjars/jquery/3.6.4/jquery.min.js--%>
 <%@ include file="common/navbar.jspf" %>
 <%@ include file="common/header.jspf" %>
-
 		<div class ="container">
 			<h1>Your Todos</h1>
 			<table class="table">
@@ -21,7 +20,18 @@
 						<tr>
 							<td>${todo.description}</td>
 							<td>${todo.targetDate}</td>
-							<td>${todo.done}</td>
+							<td>
+								<div class="check-control">
+									<c:choose>
+									    <c:when test="${todo.done=='false'}">
+											<input class="form-check-input" type="checkbox" value="" id="flexCheckDisabled" disabled>
+									    </c:when>    
+									    <c:otherwise>
+  											<input class="form-check-input" type="checkbox" value="" id="flexCheckCheckedDisabled" checked disabled>
+									    </c:otherwise>
+									</c:choose>
+								</div>
+							</td>
 							<td> <a href="delete-todo?id=${todo.id}" class="btn btn-danger">Delete</a></td>
 							<td> <a href="update-todo?id=${todo.id}" class="btn btn-success">Update</a></td>		
 						</tr>
